@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>example for text message format</title>
+        <link rel="stylesheet" type="text/css" href="TextMessageFormatter.css">
+        <link rel="stylesheet" type="text/css" href="examples.css">
+        <script defer type="text/javascript" src="TextMessageFormatter.js"></script>
+    </head>
+
+<style>
+    
+</style>
+    <body>
+        <div id="bodyContainer" class="examplesText">
+            <h1><a class="title" href="examples.html">Text Message Formatter</a></h1>
+            <p>
+                Click <a href="api.html">here</a> for API documentation.
+            </p>
+            <div class="leftAlign">
+                <h4 id="gettingStarted">Getting started</h4>
+                <ol>
+                    <li>Include the CSS file "TextMessageFormatter.css" in any HTML files that may display TMF elements.</li>
+                    <li>Include the javascript file "TextMessageFormatter.js"</li>
+                </ol>
+
+                <h4 id="usingLibrary">How to use Text Message Formatter</h4>
+                <ol>
+                    <li>
+                        Create an instance of TextMessageFormatter:<br><br>
+                        
+                        const tmf = new TextMessageFormatter();
+                    </li>
+                    <br>
+                    <li>
+                        The TextMessageFormatter instance (tmf in our case), has an attribute called messageContainer.
+                        This is the DOM element that will contain all of our messages. 
+                        Append it to whatever DOM element you wish to use to house your messaging interface.<br><br>
+
+                        For this guide, we have a Div in our DOM that we would like to use for this. <br><br>
+
+                        divInOurDom.appendChild(tmf.messageContainer);
+                    </li>
+                    <br>
+                    <li>
+                        To add messages to our message container, we need to first create an instance of a TMFMessage and
+                        include the contents of the message, the orientation (which side of the message container, our message
+                        should appear on), the timestamp of the message (if enabled), and the name of the sender (if enabled).<br><br>
+
+                        const message = new TMFMessage("Hello world!", "left", "Now", "John Doe");<br><br>
+
+                        Then, we need to call addMessage() from our TextMessageFormatter instance.<br><br>
+
+                        tmf.addMessage(message);
+                    </li>
+                </ol>
+
+                <h4 id="customizing">Customizing the appearance of Text Message Formatter</h4>
+                <ul>
+                    <li>
+                        To customize the appearance of Text Message Formatter elements, simply override the CSS 
+                        style of classes (or change the values of variables) from the "TextMessageFormatter.css" file
+                    </li>
+                    <br>
+                    <li>
+                        This can be done by including the link to your own custom "override" CSS file underneath the link 
+                        to "TextMessageFormatter.css" <br><br>
+
+                        Alternatively, inline CSS or using a style tag can be used in the HTML file that displays Text Message Formatter 
+                        elements.
+                    </li>
+                </ul>
+
+
+                <br>
+                <h4>Now you have everything you need to start working with TextMessageFormatter!</h4>
+                <p>
+                    Click <a href="api.html">here</a> for more detailed documentation on this API.
+                </p>
+            </div>
+        </div>
+        
+    </body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>example for text message format</title>
+        <link rel="stylesheet" type="text/css" href="TextMessageFormatter.css">
+        <link rel="stylesheet" type="text/css" href="examples.css">
+        <script defer type="text/javascript" src="TextMessageFormatter.js"></script>
+        <script defer type="text/javascript" src="examples.js"></script>
+    </head>
+
+<style>
+    
+</style>
+    <body>
+        <div id="bodyContainer" class="examplesText">
+            <h1><a class="title" href="examples.html">Text Message Formatter</a></h1>
+            <div>
+                <p>
+                    SMS/iMessage/Messenger style messaging, <span class="underline">without the hassle.</span>
+                </p>
+                <p>
+                    Click <a href="gettingstarted.html">here</a> to get started.
+                </p>
+                <p>
+                    Click <a href="api.html">here</a> for API documentation.
+                </p>
+            </div>
+            <div id="superContainer">
+                
+            </div>  
+            <div class="messageForm">
+                <b>TMF settings</b>
+                <form onsubmit="submitTMFSettings(); return false;">
+                    <label for="showTimestamps">Show Timestamps - false:</label>
+                    <input type="radio" value="false" name="showTimestamps">
+                    <span>&ensp;</span>
+                    <label for="showTimestamps">true:</label>
+                    <input type="radio" value="true" name="showTimestamps" checked>
+                    <br>
+
+                    <label for="showSenderNames">Show Sender Names - false:</label>
+                    <input type="radio" value="false" name="showSenderNames">
+                    <span>&ensp;</span>
+                    <label for="showSenderNames">true:</label>
+                    <input type="radio" value="true" name="showSenderNames" checked>
+                    <br>
+
+                    <label for="cleanUpTimestamps">Clean Up Timestamps - false:</label>
+                    <input type="radio" value="false" name="cleanUpTimestamps" checked>
+                    <span>&ensp;</span>
+                    <label for="cleanUpTimestamps">true:</label>
+                    <input type="radio" value="true" name="cleanUpTimestamps">
+                    <br>
+
+                    <label for="enableReactions">Enable Reactions - false:</label>
+                    <input type="radio" value="false" name="enableReactions">
+                    <span>&ensp;</span>
+                    <label for="enableReactions">true:</label>
+                    <input type="radio" value="true" name="enableReactions" checked>
+                    <br>
+
+                    <label for="enableReplies">Enable Replies - false:</label>
+                    <input type="radio" value="false" name="enableReplies">
+                    <span>&ensp;</span>
+                    <label for="enableReplies">true:</label>
+                    <input type="radio" value="true" name="enableReplies" checked>
+                    <br>
+
+                    <input type="submit" id="submit" value="Change settings">
+                </form> 
+
+
+                <b>Add Message</b>
+                <form onsubmit="submitMessage(); return false;">
+                    <label for="sName">Sender Name:</label>
+                    <input type="text" id="senderName" value="You">
+                    <br>
+                    <label for="contents">Contents:</label>
+                    <input type="text" id="contents" value="Hello world!">
+                    <br>
+                    <label for="timestamp">Timestamp:</label>
+                    <input type="text" id="timestamp" value="Now">
+                    <br>
+                    <label for="orientation">Left:</label>
+                    <input type="radio" id="orientationLeft" value="0" name="orientation">
+                    <span>&ensp;</span>
+                    <label for="orientation">Right:</label>
+                    <input type="radio" id="orientationRight" value="1" name="orientation" checked>
+                    <span>&emsp;</span>
+                    <br>
+                    <label for="replyToIndex">Reply To (Message Index):</label>
+                    <input type="text" id="replyToIndex">
+                    <br>
+                    <input type="submit" id="submit" value="Send">
+                </form> 
+
+
+                <b>Delete Message:</b>
+                <form onsubmit="submitDelete(); return false;">
+                    <label for="delete">Message Index:</label>
+                    <input type="text" id="messageId" value="0">
+                    <br>
+                    <input type="submit" id="submit" value="Delete Message">
+                </form>
+
+
+                <b>Edit Message:</b>
+                <form onsubmit="submitEdit(); return false;">
+                    <label for="editContents">New Message Contents:</label>
+                    <input type="text" id="editContents" value="">
+                    <br>
+                    <label for="editId">Message Index:</label>
+                    <input type="text" id="editMessageId" value="0">
+                    <br>
+                    <input type="submit" id="submit" value="Edit Message">
+                </form>
+
+
+                <b>React To Message</b>
+                <form onsubmit="submitReaction(); return false;">
+                    <label for="reaction">😊</label>
+                    <input type="radio" id="r1" value="😊" name="reaction" checked>
+                    <span>&ensp;</span>
+                    <label for="reaction">😭</label>
+                    <input type="radio" id="r2" value="😭" name="reaction">
+                    <span>&emsp;</span>
+                    <label for="reaction">💯:</label>
+                    <input type="radio" id="r3" value="💯" name="reaction">
+                    <span>&ensp;</span>
+                    <label for="reaction">😎</label>
+                    <input type="radio" id="r4" value="😎" name="reaction">
+                    <span>&emsp;</span>
+                    <br>
+                    <label for="reaction">React To (Message Index):</label>
+                    <input type="text" id="reactToIndex" value="0">
+                    <br>
+                    <input type="submit" id="submit" value="React">
+            </div>
+            
+        </div>
+        
+    </body>
+</html>

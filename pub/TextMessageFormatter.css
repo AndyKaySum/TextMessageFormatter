@@ -1,0 +1,298 @@
+:root {
+    --messageContainerWidth: 500px;
+    --messageContainerPadding: 10px;
+    
+    --messageBoxFont: 400 .9em 'Open Sans', sans-serif;
+    --messageBoxBorderRadius: 16px;
+    --messageBoxMarginTop: 15px;
+    --messageBoxMarginBottom: 10px;
+    --messageBoxBorder: 1px solid;
+    --messageBoxMarginFromContainerSide: 20px;
+
+    --leftBackground: rgb(237, 242, 251);
+    --leftBorderColor: rgb(245, 245, 245);
+    --leftBorder: var(--messageBoxBorder) var(--leftBorderColor);
+    
+    --rightBackground: rgb(159, 255, 151);
+    --rightBorderColor: var(--leftBorderColor);
+    --rightBorder: var(--messageBoxBorder) var(--rightBorderColor);
+
+    --messageBoxMaxWidth: calc(var(--messageContainerWidth)/2 - var(--messageBoxMarginFromContainerSide));
+    --leftMessageBoxMaxWidth: var(--messageBoxMaxWidth);
+    --rightMessageBoxMaxWidth: var(--messageBoxMaxWidth);
+
+    --timestampBottom: -20px;
+    --leftTimestampColor: grey;
+    --rightTimestampColor: grey;
+
+    --leftReactionBoxMaxWidth: var(--leftMessageBoxMaxWidth) - 20px;
+    --rightReactionBoxMaxWidth: var(--rightMessageBoxMaxWidth) - 20px;
+    --reactionBoxBackgroundColor: rgb(180, 180, 180);
+    --leftReactionBoxBackgroundColor: var(--reactionBoxBackgroundColor);
+    --rightReactionBoxBackgroundColor: var(--reactionBoxBackgroundColor);
+    --reactionBoxOffset: 10px;
+
+    --circularBorderRadius: 50px;
+
+    --replyBoxPadding: 10px;
+    --replyBoxMaxWdith: calc(var(--messageBoxMaxWidth) - 2*var(--replyBoxPadding) - var(--reactionBoxOffset));
+}
+
+._container {
+    width: var(--messageContainerWidth);
+    padding-top: var(--messageContainerPadding);
+    padding-bottom: var(--messageContainerPadding);
+    height: 100%;
+    overflow-y: scroll;
+}
+
+@keyframes messageBoxEntranceSlideIn {
+    from {top: 15%;}
+    to {top: 0;}
+}
+
+._slideIn {
+    animation-name: messageBoxEntranceSlideIn;
+    animation-duration: 0.4s;
+}
+
+@keyframes messageBoxEntranceFadeIn {
+    from {opacity: 0%;}
+    to {opacity: 100%;}
+}
+
+._fadeIn {
+    animation-name: messageBoxEntranceFadeIn;
+    animation-duration: 1s;
+}
+
+._fadeInAndSlideIn {
+    animation: messageBoxEntranceSlideIn 0.4s, messageBoxEntranceFadeIn 1s;
+}
+
+._messageBox {
+    position: relative;
+    margin-top: var(--messageBoxMarginTop);
+    margin-bottom: var(--messageBoxMarginBottom);
+    padding-left: 10px;
+    min-height: 40px;
+    text-align: left;
+    font: var(--messageBoxFont);
+    border-radius: var(--messageBoxBorderRadius);
+    
+    width: fit-content;
+    padding-right: 10px;
+}
+
+._left._messageBox {
+    margin-left: var(--messageBoxMarginFromContainerSide);
+    background-color: var(--leftBackground);
+    max-width: var(--leftMessageBoxMaxWidth);
+    border: var(--leftBorder);
+}
+
+._right._messageBox{
+    margin-left: auto; 
+    margin-right: var(--messageBoxMarginFromContainerSide);
+    background-color: var(--rightBackground);
+    max-width: var(--rightMessageBoxMaxWidth);
+    border: var(--rightBorder);
+}
+
+._messageBox:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    
+    bottom: 0;
+
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+}
+
+._left._messageBox:after {
+    border-bottom: 15px solid var(--leftBackground);
+    left: -15px;
+}
+
+._right._messageBox:after {
+    border-bottom: 15px solid var(--rightBackground);
+    right: -15px;
+}
+
+._messageBox:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    
+    bottom: -1px;
+
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+}
+
+._left._messageBox:before {
+    border-bottom: 17px solid var(--leftBorderColor); 
+    left: -17px;
+}
+
+._right._messageBox:before {
+    border-bottom: 17px solid var(--rightBorderColor);
+    right: -17px;
+}
+
+._messageContents {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    text-overflow: clip;
+}
+
+._timestamp {
+    position: absolute;
+    font-size: .85em;
+    color: grey;
+    font-weight: 300;
+    bottom: var(--timestampBottom);
+
+    max-width: var(--messageBoxMaxWidth);
+    overflow: hidden;/*character limits set by TMFSettings object can handle this job*/
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+._left._timestamp {
+    color: var(--leftTimestampColor);
+    left: 5px;
+
+    max-width: var(--leftMessageBoxMaxWidth);
+}
+
+._right._timestamp {
+    color: var(--rightTimestampColor);
+    right: 5px;
+
+    max-width: var(--rightMessageBoxMaxWidth);
+}
+
+._senderName {
+    position: absolute;
+    font-size: .85em;
+    color: grey;
+    font-weight: 300;
+    top: -20px;
+
+    max-width: var(--messageBoxMaxWidth);
+    overflow: hidden;/*character limits set by TMFSettings object can handle this job*/
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+._left._senderName {
+    color: var(--leftTimestampColor);
+    left: 5px;
+
+    max-width: var(--leftMessageBoxMaxWidth);
+}
+
+._right._senderName {
+    color: var(--rightTimestampColor);
+    right: 5px;
+
+    max-width: var(--rightMessageBoxMaxWidth);
+}
+
+._reactionBox {
+    position: absolute;
+    bottom: -12px;
+    
+    border-radius: var(--circularBorderRadius);
+
+    display: flex;
+}
+
+._left._reactionBox {
+    max-width: var(--leftReactionBoxMaxWidth);
+    right: var(--reactionBoxOffset);
+    
+    background-color: var(--leftReactionBoxBackgroundColor);
+}
+
+._right._reactionBox {
+    max-width: var(--rightReactionBoxMaxWidth);
+    left: var(--reactionBoxOffset);
+    
+    background-color: var(--rightReactionBoxBackgroundColor);
+}
+
+._reactionSymbolContainer {
+    border-radius: var(--circularBorderRadius);
+    size: 100%;
+
+    padding-bottom: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+
+    background-color: transparent;
+    cursor: pointer;
+}
+
+._reactionSymbolContainer._interacted {
+
+    background-color: rgb(120, 120, 120);
+    color: white;
+}
+
+._replyBox {
+    position: absolute;
+
+    padding-left: var(--replyBoxPadding);
+    height: 20px;
+    text-align: left;
+    font: var(--messageBoxFont);
+    border-radius: var(--messageBoxBorderRadius);
+    
+    max-width: var(--replyBoxMaxWdith);
+    padding-right: var(--replyBoxPadding);
+
+    top: -20px;
+    /*z-index: -1;*/
+    padding-top: 5px;
+
+    /*pointer-events: auto;*/
+}
+
+._left._replyBox {
+    left: var(--reactionBoxOffset);
+
+    background-color: var(--rightBackground);
+    max-width: var(--leftMessageBoxMaxWidth);
+    border: var(--leftBorder);
+}
+
+._right._replyBox{
+    right: var(--reactionBoxOffset);
+    
+    background-color: var(--leftBackground);
+    max-width: var(--rightMessageBoxMaxWidth);
+    border: var(--rightBorder);
+}
+
+._replyContents {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    
+    max-width: var(--replyBoxMaxWdith);
+    overflow: hidden;/*character limits set by TMFSettings object can handle this job*/
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    cursor: pointer;
+}
+
+._replyContents:hover {
+    color: white;
+}
