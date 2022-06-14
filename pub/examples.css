@@ -1,0 +1,67 @@
+body {
+    display: flex;
+    background-color: rgb(248, 248, 248);
+}
+.examplesText {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+}
+#bodyContainer {
+    margin: auto;
+    background-color: rgb(243, 243, 243);
+    padding: 20px 50px 50px 50px;
+}
+#superContainer {
+    border: 2px solid black;
+    width: 500px;/*same as ._container's in our css file*/
+    margin-bottom: 10px;
+    height: 300px;
+    /*overflow-y: scroll;*/
+    padding-bottom: 20px;
+    resize: vertical;
+    overflow: hidden;
+
+    background-color: white;
+}
+.messageForm {
+    text-align: left;
+}
+.title {
+    text-decoration: underline overline;
+}
+a.title:visited {
+    color: black;
+    text-decoration: none;
+}
+.underline {
+    text-decoration: underline;
+}
+.italic {
+    font-style: italic;
+}
+
+.leftAlign{
+    text-align: left;
+}
+
+form {
+    line-height: 1.5;
+    border-top: 1px solid white;
+    border-radius: 3px;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+input[type=text] {
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+input[type=submit] {
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    padding: 3px;
+    margin-top: 10px;
+}

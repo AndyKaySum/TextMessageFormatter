@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>example for text message format</title>
+        <link rel="stylesheet" type="text/css" href="TextMessageFormatter.css">
+        <link rel="stylesheet" type="text/css" href="examples.css">
+        <script defer type="text/javascript" src="TextMessageFormatter.js"></script>
+    </head>
+
+<style>
+    
+</style>
+    <body>
+        <div id="bodyContainer" class="examplesText">
+            <h1><a class="title" href="examples.html">Text Message Formatter</a></h1>
+            <p>
+                Click <a href="gettingstarted.html">here</a> to get started.
+            </p>
+            <div class="leftAlign">
+                <h2 id="api">API</h2>
+
+                <h3 id="tmf">TextMessageFormatter</h3>
+                <ul>
+                    <li>
+                        <h4>Attributes:</h4>
+                        <ul>
+                            <li>
+                                <span class="italic">messages</span>: An array of <a href="api.html#tmfMessage">TMFMessage</a> instances).
+                            </li>
+                            <br>
+
+                            <li>
+                                <span class="italic">_messagesInDom</span>: An array of messageBox DOM elements. Each message in messages comes with a
+                                DOM element in _messagesInDom when adding messages through addMessage().
+                            </li>
+                            <br>
+                            
+                            <li>
+                                <span class="italic">totalMessages</span>: The number of messages in the messages array (or _messagesInDom). 
+                                Should be the same as messages.length and _messagesInDom.length.
+                            </li>
+                            <br>
+                            
+                            <li>
+                                <span class="italic">messageContainer</span>: A DOM element that contains all of our formatted messages. 
+                                Contains all elements from _messagesInDom array.
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <h4>Methods:</h4>
+                        <ul>
+                            <li>
+                                constructor(settings=new TMFSettings()):<br><br>
+
+                                Initializes an instance of TextMessageFormatter. <br><br>
+
+                                <span class="underline">settings</span>: an instance of <a href="api.html#tmfSettings">TMFSettings</a>, changes behaviour of DOM manipulation depending on selected settings. 
+                                If left empty, default settings will be applied (see TMFSettings documentation <a href="api.html#tmfSettings">here</a>).
+                            </li>
+                            <br>
+
+                            <li>
+                                addMessage(message):<br><br>
+
+                                Adds a message to the messages array, _messagesInDom array, and messageContainer DOM element.<br><br>
+
+                                <span class="underline">message</span>: An instance of <a href="api.html#tmfMessage">TMFMessage</a> being added to our messages array.
+                            </li>
+                            <br>
+
+                            <li>
+                                deleteMessage(messageId):<br><br>
+
+                                Removes message from the messages array, _messagesInDom array, and messageContainer DOM element. Any message replying to the deleted message 
+                                will have the text in their reply component in the DOM replaced with "message has been deleted" text. The text can be modified in settings (see 
+                                TMFSettings documentation <a href="api.html#tmfSettings">here</a>).<br><br>
+
+                                <span class="underline">messageId</span>: The index in the messages array (or _messagesInDom array) of message to be removed.
+                            </li>
+                            <br>
+
+                            <li>
+                                editMessage(messageId, contents):<br><br>
+
+                                Replaces message contents of a message. Any message replying to the editted message will have the text in their reply
+                                component in the DOM editted as well.<br><br>
+
+                                <span class="underline">messageId</span>: The index in the messages array (or _messagesInDom array) of message to be removed.<br><br>
+                                
+                                <span class="underline">contents</span>: New message contents string.
+                            </li>
+                            <br>
+
+                            <li>
+                                addReaction(messageId, symbol, interacted=false):<br><br>
+
+                                Adds a reaction to a message. If the symbol is already present as a reaction, increment it's counter.<br><br>
+
+                                <span class="underline">messageId</span>: The index in the messages array (or _messagesInDom array) of message to be reacted to.<br><br>
+                                
+                                <span class="underline">symbol</span>: Emoji to be used as a reaction. NOTE: Nothing enforces whether or not symbol must be an emoji,
+                                it is up to the developer to enforce this prior to calling this method.<br><br>
+                                
+                                <span class="underline">interacted</span>: Boolean to set the "state" of the reaction. If set to true, clicking on the reaction removes 
+                                or decrements its counter. If set to false, clicking on it increments its counter. Clicking on the reaction
+                                toggles its interacted state, so a user can only increment or decrement a reaction at most once before switching
+                                to the opposite action. False by default.
+                            </li>
+                            <br>
+
+                            <li>
+                                removeReaction(messageId, symbol, interacted=false):<br><br>
+
+                                Decrements or removes a reaction to from a message. If the symbol is present as a reaction and its counter is 2 or greater, decrement it's counter.
+                                If its counter is 1 or less, remove the reaction from the message.<br><br>
+
+                                <span class="underline">messageId</span>: The index in the messages array (or _messagesInDom array) of message to be reacted to.<br><br>
+                                
+                                <span class="underline">symbol</span>: Emoji to be used as a reaction. NOTE: Nothing enforces whether or not symbol must be an emoji,
+                                it is up to the developer to enforce this prior to calling this method.<br><br>
+                                
+                                <span class="underline">interacted</span>: Boolean to set the "state" of the reaction. If set to true, clicking on the reaction removes 
+                                or decrements its counter. If set to false, clicking on it increments its counter. Clicking on the reaction
+                                toggles its interacted state, so a user can only increment or decrement a reaction at most once before switching
+                                to the opposite action. False by default.
+                            </li>
+                            <br>
+
+                            <li>
+                                replyToMessage(replyMessage, messageId):
+
+                                Adds a message with a reply component to the messages array, _messagesInDom array, and messageContainer DOM element. 
+                                Reply component contains text from the message contents of the element at index == messageId.<br><br>
+
+                                <span class="underline">replyMessage</span>: An instance of <a href="api.html#tmfMessage">TMFMessage</a> being added to our messages array.<br><br>
+
+                                <span class="underline">messageId</span>: The index in the messages array (or _messagesInDom array) of message to be replied to.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h3 id="tmfMessage">TMFMessage</h3>
+                <ul>
+                    <li>
+                        <h4>Attributes:</h4>
+                        <ul>
+                            <li>
+                                <span class="italic">contents</span>: A string representing the text contents of the messasge.
+                            </li>
+                            <br>
+
+                            <li>
+                                <span class="italic">orientation</span>: An instance of <a href="api.html#tmfOrientation">TMFOrientationEnum</a> used to determine which side
+                                the message should appear on in the <a href="api.html#tmf">TextMessageFormatter</a> messageContainer DOM element.
+                            </li>
+                            <br>
+                            
+                            <li>
+                                <span class="italic">timestamp</span>: A string intended to represent the timestamp of the message.
+                            </li>
+                            <br>
+                            
+                            <li>
+                                <span class="italic">senderName</span>: A string intended to represent the name of message sender.
+                            </li>
+                            <br>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <h4>Methods:</h4>
+                        <ul>
+                            <li>
+                                constructor(contents, orientation, timestamp=null, senderName=null):<br><br>
+
+                                Initializes an instance of TMFMessage. <br><br>
+
+                                NOTE: A string can alternatively be used instead of <a href="api.html#tmfOrientation">TMFOrientationEnum</a>, it will be processed
+                                and set to the appropriate  value.
+                            </li>
+                            <br>
+
+                            <li>
+                                resetReactions():<br><br>
+
+                                Removes reaction information, resetting it to it's original state (same as on Initialization).
+                            </li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h3 id="tmfSettings">TMFSettings</h3>
+                <ul>
+                    <li>
+                        Determines the behaviour of a <a href="api.html#tmf">TextMessageFormatter</a> instance.
+                    </li>
+                    <li>
+                        <h4>Attributes:</h4>
+                        <ul>
+                            <li>
+                                <span class="italic">showTimestamp</span>: A boolean value that determines whether or not timestamps are enabled and shown on messages.
+                            </li>
+                            <br>
+
+                            <li>
+                                <span class="italic">showNames</span>: A boolean value that determines whether or not sender names are enabled and shown on messages.
+                            </li>
+                            <br>
+                            
+                            <li>
+                                <span class="italic">cleanTimestamps</span>: A boolean value that determines whether or not timestamps from consecutive messages with the 
+                                same orientation are shown. intended to simplify the look of the message container.
+                            </li>
+                            <br>
+                            
+                            <li>
+                                <span class="italic">messageEntranceAnimationIndex</span>: Index to select premade message "entering" animations.<br><br>
+
+                                0: slide in animation, 1: fade in animation, 2: fade in and slide in animation (combines both 0 and 1).
+                            </li>
+                            <br>
+
+                            <li>
+                                <span class="italic">selectedAnimation</span>: Class name of selected message "entering" animation.<br><br>
+
+                                NOTE: Since this attribute does not appear in the constructor, it must be set after Initialization to use custom animations.
+                            </li>
+                            <br>
+
+                            <li>
+                                <span class="italic">enableReactions</span>: A boolean value that determines whether or not reactions are enabled and shown on messages.
+                            </li>
+                            <br>
+
+                            <li>
+                                <span class="italic">enableReplies</span>: A boolean value that determines whether or not message replies are enabled and shown on messages.
+                            </li>
+                            <br>
+
+                            <li>
+                                <span class="italic">maxReplyLength</span>: An integer value representing the maximum allowed character count for the reply component of a 
+                                message DOM element.
+                            </li>
+                            <br>
+
+                            <li>
+                                <span class="italic">maxNameLength</span>: An integer value representing the maximum allowed character count for the sender component of a 
+                                message DOM element.
+                            </li>
+                            <br>
+
+                            <li>
+                                <span class="italic">maxTimestampLength</span>:  An integer value representing the maximum allowed character count for the timestamp component of a 
+                                message DOM element.
+                            </li>
+                            <br>
+
+                            <li>
+                                <span class="italic">messageDeletedText</span>: The string that is used to replace the reply component text for message DOM elements that are 
+                                replying to deleted messages.
+                            </li>
+                            <br>
+
+                            <li>
+                                <span class="italic">enableDoubleClickToReact</span>: A boolean value that determines whether or not users can double click a message to add a 
+                                predetermined reaction.
+                            </li>
+                            <br>
+
+                            <li>
+                                <span class="italic">enableDoubleClickToUnreact</span>: A boolean value that determines whether or not users can double click a message to remove a 
+                                predetermined reaction.
+                            </li>
+                            <br>
+
+                            <li>
+                                <span class="italic">doubleClickToReactSymbol</span>: The predetermined reaction symbol that is used when enableDoubleClickToReact (or enableDoubleClickToUnreact) 
+                                is enabled.<br><br>
+
+                                NOTE: Nothing enforces whether or not the symbol must be an emoji,
+                                it is up to the developer to choose an appropriate symbol, otherwise it may cause unintended consequences for the appearance of the 
+                                reactions component of messages in the DOM.
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <h4>Methods:</h4>
+                        <ul>
+                            <li>
+                                constructor(showTimestamp=false, showNames=false, cleanTimestamps=false, messageEntranceAnimationIndex=2, 
+                                            enableReactions=true, enableReplies=true, maxReplyLength=40, maxNameLength=30, maxTimestampLength = 40, messageDeletedText="<Message was deleted>",
+                                            enableDoubleClickToReact=true, enableDoubleClickToUnreact=true, doubleClickToReactSymbol="❤️"):<br><br>
+
+                                Initializes an instance of TMFSettings.<br><br>
+
+                                NOTE: Changing settings after initializing an instance of <a href="api.html#tmf">TextMessageFormatter</a> is not recomended as it does not retroactively change 
+                                how elements in the DOM are displayed according to the new attributes of TMFSettings. If developer wants to change settings and maintain the "state" of their 
+                                <a href="api.html#tmf">TextMessageFormatter</a> instance, they must create a new instance with the new settings and retrace the actions that led to the state they 
+                                want to recreate.
+                            </li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+                 
+                <h3 id="tmfOrientation">TMFOrientationEnum</h3>
+                <ul>
+                    <li>
+                        A frozen JSON object intended to act as an enumeration for TMFMessage orientation.
+                    </li>
+                    <li>
+                        TMFOrientationEnum.left = 0
+                    </li>
+                    <li>
+                        TMFOrientationEnum.right = 1
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+        
+    </body>
+</html>
